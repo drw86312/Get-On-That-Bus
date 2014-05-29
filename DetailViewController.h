@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  DetailViewController.h
 //  Get On That Bus
 //
 //  Created by David Warner on 5/28/14.
@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface ViewController : UIViewController
+@interface DetailViewController : UIViewController
 
-@property MKPointAnnotation *busAnnotation;
-
-
+@property NSDictionary *dictionaryFromMap;
+@property MKPointAnnotation *detailPointLocation;
 
 @end

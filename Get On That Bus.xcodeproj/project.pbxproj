@@ -21,6 +21,8 @@
 		0E7CBE81193664CB008D16C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E7CBE63193664CB008D16C4 /* UIKit.framework */; };
 		0E7CBE89193664CB008D16C4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0E7CBE87193664CB008D16C4 /* InfoPlist.strings */; };
 		0E7CBE8B193664CB008D16C4 /* Get_On_That_BusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7CBE8A193664CB008D16C4 /* Get_On_That_BusTests.m */; };
+		0E7CBE95193664DC008D16C4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E7CBE94193664DC008D16C4 /* MapKit.framework */; };
+		0E7CBE9B1936ABBE008D16C4 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7CBE9A1936ABBE008D16C4 /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,9 @@
 		0E7CBE86193664CB008D16C4 /* Get On That BusTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Get On That BusTests-Info.plist"; sourceTree = "<group>"; };
 		0E7CBE88193664CB008D16C4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0E7CBE8A193664CB008D16C4 /* Get_On_That_BusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Get_On_That_BusTests.m; sourceTree = "<group>"; };
+		0E7CBE94193664DC008D16C4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		0E7CBE991936ABBE008D16C4 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = ../DetailViewController.h; sourceTree = "<group>"; };
+		0E7CBE9A1936ABBE008D16C4 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = ../DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E7CBE95193664DC008D16C4 /* MapKit.framework in Frameworks */,
 				0E7CBE62193664CB008D16C4 /* CoreGraphics.framework in Frameworks */,
 				0E7CBE64193664CB008D16C4 /* UIKit.framework in Frameworks */,
 				0E7CBE60193664CB008D16C4 /* Foundation.framework in Frameworks */,
@@ -101,6 +107,7 @@
 		0E7CBE5E193664CB008D16C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0E7CBE94193664DC008D16C4 /* MapKit.framework */,
 				0E7CBE5F193664CB008D16C4 /* Foundation.framework */,
 				0E7CBE61193664CB008D16C4 /* CoreGraphics.framework */,
 				0E7CBE63193664CB008D16C4 /* UIKit.framework */,
@@ -115,6 +122,8 @@
 				0E7CBE6E193664CB008D16C4 /* AppDelegate.h */,
 				0E7CBE6F193664CB008D16C4 /* AppDelegate.m */,
 				0E7CBE71193664CB008D16C4 /* Main.storyboard */,
+				0E7CBE991936ABBE008D16C4 /* DetailViewController.h */,
+				0E7CBE9A1936ABBE008D16C4 /* DetailViewController.m */,
 				0E7CBE74193664CB008D16C4 /* ViewController.h */,
 				0E7CBE75193664CB008D16C4 /* ViewController.m */,
 				0E7CBE77193664CB008D16C4 /* Images.xcassets */,
@@ -252,6 +261,7 @@
 				0E7CBE76193664CB008D16C4 /* ViewController.m in Sources */,
 				0E7CBE70193664CB008D16C4 /* AppDelegate.m in Sources */,
 				0E7CBE6C193664CB008D16C4 /* main.m in Sources */,
+				0E7CBE9B1936ABBE008D16C4 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
