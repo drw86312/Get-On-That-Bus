@@ -12,6 +12,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *routesLabel;
 @property (weak, nonatomic) IBOutlet MKMapView *detailMapView;
 @property (weak, nonatomic) IBOutlet UILabel *directionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *transferLabel;
+@property (weak, nonatomic) IBOutlet UILabel *stopIDLabel;
 
 @end
 
@@ -23,8 +25,8 @@
     [super viewDidLoad];
 
     NSString *routes = [self.dictionaryFromMap objectForKey:@"routes"];
-    NSString *routesNoSpaces = [routes stringByReplacingOccurrencesOfString:@"," withString:@", "];
-    self.routesLabel.text = routesNoSpaces;
+    NSString *routesSpaces = [routes stringByReplacingOccurrencesOfString:@"," withString:@", "];
+    self.routesLabel.text = routesSpaces;
 
 
     NSString *longitudeString = [self.dictionaryFromMap objectForKey:@"longitude"];
@@ -61,6 +63,21 @@
     else if ([direction isEqual: @"EB"]) {
         self.directionLabel.text = @"Eastbound";
     }
+
+    NSString *intermodal = [self.dictionaryFromMap objectForKey:@"inter_modal"];
+
+    if ([intermodal isEqual:@"Pace"]) {
+        self.transferLabel.text = @"Yes   To: Pace";
+    }
+    else if ([intermodal isEqual:@"Metra"]) {
+        self.transferLabel.text = @"Yes   To: Metra";
+    }
+    else {
+        self.transferLabel.text = @"No";
+    }
+
+    NSString *stopID = [self.dictionaryFromMap objectForKey:@"stop_id"];
+    self.stopIDLabel.text = [NSString stringWithFormat:@"Text: ctabus%@ to 41411 for arrivals", stopID];
 
 }
 

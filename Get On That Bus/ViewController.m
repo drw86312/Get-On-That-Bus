@@ -9,9 +9,10 @@
 #import "ViewController.h"
 #import "DetailViewController.h"
 
-@interface ViewController () <MKMapViewDelegate>
+@interface ViewController () <MKMapViewDelegate , UITableViewDataSource, UITableViewDelegate>
 @property NSArray *stopsArray;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UITableView *stopsTableView;
 @property NSDictionary *selectedDictionary;
 
 @end
@@ -21,6 +22,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
 
     NSString *urlString = @"https://s3.amazonaws.com/mobile-makers-lib/bus.json";
     NSURL *url = [NSURL URLWithString:urlString];
@@ -43,10 +45,10 @@
              NSString *stopName = [dictionary objectForKey:@"cta_stop_name"];
              self.busAnnotation.title = stopName;
              NSString *routeName = [dictionary objectForKey:@"routes"];
-
              self.busAnnotation.subtitle = routeName;
 
              [self.mapView addAnnotation:self.busAnnotation];
+             [self.stopsTableView reloadData];
          }
      }];
 
@@ -61,7 +63,20 @@
     MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:nil];
     pin.canShowCallout = YES;
     pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    
+
+    UIImageView *imageViewPace = [[UIImageView alloc] init];
+    imageViewPace.image = [UIImage imageNamed:@"pace"];
+    UIImageView *imageViewMetra = [[UIImageView alloc] init];
+    imageViewPace.image = [UIImage imageNamed:@"metra"];
+
+    for (NSDictionary *stop in self.stopsArray) {
+        if ([[stop objectForKey:@"inter_modal"] isEqualToString:@"Pace"]) {
+            pin.leftCalloutAccessoryView = imageViewPace;
+        }
+        else if ([[stop objectForKey:@"inter_modal"] isEqualToString:@"Metra"]){
+            pin.leftCalloutAccessoryView = imageViewMetra;
+        }
+    }
     return pin;
 }
 
@@ -91,6 +106,51 @@ calloutAccessoryControlTapped:(UIControl *)control
     [destinationViewController.navigationItem setTitle:[self.selectedDictionary objectForKey:@"cta_stop_name"]];
 }
 
+
+
+- (IBAction)toggleViewController:(id)sender
+{
+
+    [self segmentChanged:sender];
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.stopsArray.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCell"];
+    NSDictionary *dictionary = [self.stopsArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [dictionary objectForKey:@"cta_stop_name"];
+
+    NSString *routes = [dictionary objectForKey:@"routes"];
+    NSString *routesSpaces = [routes stringByReplacingOccurrencesOfString:@"," withString:@", "];
+    cell.detailTextLabel.text = routesSpaces;
+
+    return cell;
+}
+
+- (void)segmentChanged:(id)sender
+{
+    switch ([sender selectedSegmentIndex]) {
+        case 0:
+        {
+            self.stopsTableView.hidden = YES;
+            self.mapView.hidden = NO;
+            break;
+        }
+        case 1:
+        {
+            self.stopsTableView.hidden = NO;
+            self.mapView.hidden = YES;
+            break;
+        }
+        default:
+            break;
+    }
+}
 
 
 
